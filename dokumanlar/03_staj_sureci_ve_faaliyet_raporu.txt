@@ -1,0 +1,23 @@
+# Staj Süreci ve Staj Faaliyet Raporu (Staj Defteri)
+
+## Staj süresince ne yapmam gerekiyor?
+Öğrenci onay aldığı firmada, başvuruda belirttiği tarih aralığında stajını yapar. Staj boyunca çalıştığı alanla ve bölümle ilgili belirlediği bir konuda uygulama veya proje geliştirir. Stajın her günü için Staj Faaliyet Raporu'na o günün çalışmasını yazar.
+
+## Staj faaliyet raporu (staj defteri) nedir? Nasıl hazırlanır?
+Staj Faaliyet Raporu, staj defteri olarak da bilinen ve staj süresince yapılan çalışmaların günlük olarak kaydedildiği belgedir. Bölüm sayfasındaki şablon kullanılır. Rapor bilgisayarda hazırlanır; Times New Roman (12) veya Arial (12) yazı tipi kullanılır. Her gün için tarih ve konu açıkça belirtilir. Raporda o gün yapılan işlerin tanımı, projeye ilişkin özet bilgiler ve varsa kod parçaları yer alır. İsteğe bağlı görseller eklenebilir ama sonradan sayfaya yapıştırılmamalıdır. Rapor özgün olmalıdır; kopya içerikler reddedilir. Yurt içi stajlarda rapor dili Türkçedir; yurt dışı stajlarda Türkçe veya İngilizce olabilir.
+
+## Staj faaliyet raporunun bölümleri nelerdir? Kapak ve giriş sayfası nasıl doldurulur?
+Rapor sırasıyla şu bölümlerden oluşur:
+1. Kapak Sayfası: Ad-soyad ve öğrenci numarası yazılır, Staj Konusu olarak yapılan staj işaretlenir (Staj-I Yazılım / Staj-II Donanım), staj yılı güncel değilse güncellenir. Bu sayfa cildin ön yüzüne kapak olarak bastırılır.
+2. Giriş Sayfası: Ad-soyad, öğrenci numarası, okuduğu yarıyıl (Eylül'e geçilmemişse bulunduğu yarıyıl), staj yaptığı kurum, staj başlangıç ve bitiş tarihi, çalışma süresi (zorunlu stajlarda 20 iş günü) yazılır ve staj konusu işaretlenir. Bu sayfadaki fotoğraf bölümüne uygun bir vesikalık fotoğraf yapıştırılır.
+3. Dağıtım Cetveli ("Pratik çalışmanın günlere göre dağıtım cetveli"): Her gün için tarih, o gün çalışılan konular ve sayfa numarası yazılır. Toplam iş günü sayısı belirtilir. "İş yeri amirinin onayı" bölümü firma yetkilisine ıslak imzalatılır ve firmanın vergi numaralı kaşesi bastırılır (devlet kurumlarında mühür yeterlidir). "Öğrenci imzası" bölümünü öğrenci ıslak imzayla imzalar.
+4. İş Günleri (Günlük Sayfalar): 20 iş gününün her biri için en az bir sayfa ayrılır. Her sayfaya yapılan iş konusu, tarih ve sayfa numarası yazılır; "Günün İçeriği" kısmına o gün yapılan proje, etkinlik ve işler yazılır.
+
+## Staj defterinin her sayfası imzalanmalı mı? Kaşe gerekli mi?
+Evet. Her günlük sayfanın en altındaki "Kontrol" bölümü, staj süresince sorumlu olan iş yeri amirine ıslak imzalatılır ve kaşesi bastırılır. Doldurulan her sayfa aynı gün onaylatılmalıdır. Amirin kaşesi yoksa her sayfaya unvanı, adı ve soyadı okunaklı şekilde yazılır ve ıslak imza atılır.
+
+## Staj defteri nasıl ciltlenir? Spiral olur mu?
+Sayfalar sırasıyla Kapak Sayfası (en dışta, cildin ön yüzünde), Giriş Sayfası, Dağıtım Cetveli ve 20 iş günü sayfaları şeklinde birleştirilir ve KARTON KAPAKLI CİLT olarak bastırılır. Spiral, kraft, sunum dosyası, poşet dosya, yapraklı, telli veya cepli dosya ile teslim edilen raporlar kabul edilmez.
+
+## Staj sırasında belgelerde sahtecilik yapılırsa ne olur?
+Staj evrakında veya belgelerinde tahribat yapan ya da staj yerine gitmediği halde staj raporu hazırlayıp teslim ettiği tespit edilen öğrenciler hakkında Yükseköğretim Kurumları Öğrenci Disiplin Yönetmeliği'ne göre soruşturma açılır.

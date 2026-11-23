@@ -1,0 +1,29 @@
+# İletişim, Güncel Bilgi Kaynakları ve Staj Belgeleri Listesi
+
+## Staj ile ilgili sorularım için kime ulaşmalıyım? Staj sorumlusu kim?
+- Staj başvurusu ile ilgili soru ve sorunlar (ve gönüllü staj): Arş.Gör. Muhammet Çağrı Gencer - muhammetgencer@sdu.edu.tr
+- Staj teslimi ile ilgili problemler: Dr.Öğr.Üyesi İbrahim Arda Çankaya - ardacankaya@sdu.edu.tr
+İletişim e-posta yoluyla yapılır.
+
+## Stajla ilgili güncel bilgileri ve duyuruları nereden takip edebilirim?
+Bölüm Staj Komisyonu'ndan bilgi alınabilir. Ayrıca şu sayfalar takip edilmelidir:
+- Bilgisayar Mühendisliği Staj İşlemleri sayfası: https://muhendislik.sdu.edu.tr/bilmuh/tr/staj-islemleri/bilgisayar-muhendisligi-bolumu-staj-islemleri-15930s.html
+- Bölüm duyuruları: https://muhendislik.sdu.edu.tr/bilmuh/tr/duyurular
+- Sıkça Sorulan Sorular: https://muhendislik.sdu.edu.tr/bilmuh/tr/kolay-ulasim/sikca-sorulan-sorular-11796s.html
+- Staj Yol Haritası (PDF): https://muhendislik.sdu.edu.tr/assets/uploads/sites/46/files/staj-yol-haritasi-05032023.pdf
+Staj işlemlerine başlamadan önce Bölüm Staj Yönergesi'ni ve bölüm sayfasındaki staj duyuru ve belgelerini okumak gerekir.
+
+## Staj için hangi belgeler/formlar var? Formları nereden indiririm?
+Tüm formlar bölümün Staj İşlemleri sayfasından indirilir. Belgeler ve ne zaman kullanıldıkları:
+STAJ ÖNCESİ (başvuru):
+- Zorunlu Staj Başvuru Formu: 2 nüsha; öğrenci doldurur ve imzalar, firma imzalar ve kaşeler.
+- Staj Tercih Dilekçesi: Yurt içi (normal), Yurtdışı veya SGK Yapılmayacak (aktif çalışılan firma) türünden uygun olanı.
+- İş Sağlığı ve Güvenliği (İSG) Sertifikası: ogem.sdu.edu.tr üzerinden alınır.
+- Transkript: sdunet.sdu.edu.tr üzerinden alınır.
+- SGK hizmet dökümü: sadece aktif çalışılan firmada staj yapılacaksa.
+STAJ SIRASINDA:
+- Staj Faaliyet Raporu (staj defteri) şablonu: her iş günü doldurulur ve onaylatılır.
+STAJ SONRASI (teslim):
+- Staj Teslim Tutanağı: kontrol listesiyle birlikte doldurulup imzalanır.
+- Staj Değerlendirme Formu: firma doldurur, kapalı ve kaşeli zarfta teslim edilir.
+- Ciltli Staj Faaliyet Raporu.

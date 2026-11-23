@@ -1,0 +1,43 @@
+# Staj Genel Kuralları (SDÜ Bilgisayar Mühendisliği)
+
+## Staj yapmak zorunlu mu?
+Evet. Bilgisayar Mühendisliği Bölümü'nden mezun olabilmek için ders kredilerinin yanında iki zorunlu staj yapmak gerekir: Yazılım stajı ve Donanım stajı.
+
+## Staj süresi ne kadar? Kaç staj yapılır?
+İki zorunlu staj vardır. Yazılım stajı 20 iş günü, Donanım stajı 20 iş günüdür. Yazılım stajının notu Staj-I'e, Donanım stajının notu Staj-II'ye girilir.
+
+## Stajların ikisini de aynı konuda (örneğin ikisini de yazılım) yapabilir miyim?
+Hayır. Yazılım ve donanım konulu iki ayrı staj yapmak zorunludur. Hangi stajla başlanacağı öğrencinin tercihidir, istenilen sırada yapılabilir.
+
+## Staja kaçıncı yarıyıldan sonra başlayabilirim? Birinci ve ikinci staj şartları nelerdir?
+Birinci stajı yapabilmek için bölümde en az 4 yarıyıl eğitimi tamamlamış olmak gerekir (en erken 4. yarıyıl sonunda). İkinci stajı yapabilmek için en az 6 yarıyıl eğitimi tamamlamış olmak gerekir (en erken 6. yarıyıl sonunda).
+
+## Aynı yaz döneminde iki staj yapabilir miyim?
+4. yarıyıl sonunda iki staj birden yapılamaz. 6. yarıyıl tamamlandıktan sonra istenirse iki staj aynı yaz döneminde yapılabilir. Normalde ilk stajın 4. yarıyıl sonunda, ikinci stajın 6. yarıyıl sonunda yapılması beklenir.
+
+## Stajı ne zaman yapabilirim? Yaz stajı tarihleri nedir?
+Stajlar güz ve bahar yarıyılları dışında, yaz döneminde yapılır. Yaz stajı aralığı, ilgili yılın akademik takvimine göre bahar dönemi bütünleme sınavlarının bitişi ile bir sonraki akademik yılın güz dönemi başlangıcı arasındadır. Staj tarihleri resmi tatiller göz önüne alınarak, firma ile görüşülerek belirlenir ve 20 iş gününe denk gelecek şekilde ayarlanır.
+
+## Güz veya bahar dönemi içinde (okul açıkken) staj yapabilir miyim?
+Normalde hayır. Ancak Staj Yönergesi Madde 4-c'ye göre şu öğrenciler eğitim-öğretim ve sınav dönemlerinde de staj yapabilir: derslerini tamamlamış ve mezuniyet için sadece staj eksiği kalmış öğrenciler, sekiz yarıyılını tamamlamış ve devam zorunluluğu olmayan öğrenciler, kayıtlı olduğu yarıyılda hiçbir dersinden devam zorunluluğu olmayan (haftada en az beş iş günü serbest olan) beklemeli öğrenciler. Bu şartları sağlayan öğrencilerin yaz dönemini beklemesine gerek yoktur.
+
+## Dönem arasında (yarıyıl tatilinde) staj yapabilir miyim?
+Yarıyıl tatilinde (dönem arası) staj yapılamaz. Tek istisna: daha önce bir kısmı koşullu kabul edilmiş bir stajı olan öğrenci, kalan iş günlerini yarıyıl tatilinde tamamlayabilecekse (süre yeterliyse), Bölüm Staj Komisyonu onaylarsa dönem arasında staj yapabilir.
+
+## Yaz okulunda ders alıyorum, staj yapabilir miyim?
+Yaz okulunda ders alan öğrenci, yaz okulu bitmeden stajına başlayamaz.
+
+## Stajı bölebilir miyim? (15+5 veya 10+10 iş günü gibi)
+Hayır. Staj süreleri bölüm yönetim kurulunca 20 iş günü Yazılım ve 20 iş günü Donanım olarak onaylanmıştır ve kesintisiz yapılması esastır. İstisna: Öğrenci 20 iş günü staj yapmış ama komisyon örneğin sadece 15 iş gününü kabul etmişse, stajın transkriptte 'G' olarak görünmesi için kalan 5 iş gününü tekrar yapmalıdır. Kalan günler, öğrencinin belirlediği ve komisyonun kabul ettiği tarihlerde kesintisiz yapılır.
+
+## Staja devam zorunluluğu var mı? Devamsızlık hakkı var mı?
+Staja fiilen devam zorunludur. Öğrenci kurumun işe geliş-gidiş saatlerine uymak zorundadır. İzinsiz veya mazeretsiz olarak üç günden fazla devamsızlık yapan öğrencinin durumu kurum tarafından Bölüm Staj Komisyonu'na bildirilir ve stajına son verilir. Mazeretsiz olarak kesilen staj geçersiz sayılır.
+
+## Staja başladıktan sonra staj yerini değiştirebilir miyim?
+Staja başlayan öğrenci, Staj Komisyonu'nu bilgilendirmeden ve onay almadan staj yerini değiştiremez. Değiştirirse yapılan staj geçersiz sayılır.
+
+## Staj yerinde hangi kurallara uymam gerekiyor?
+Öğrenci staj yaptığı kurumun tüzük, yönetmelik, yönerge ve çalışma kurallarına uymak zorundadır. Staj süresince yetkililerin verdiği staj konusuyla ilgili çalışmaları yapmak ve bunlara katılmak zorundadır.
+
+## Yönergede olmayan bir durum için kim karar verir?
+Staj Yönergesi'nde bulunmayan konularda Bölüm Kurulu yetkilidir. Bölüm Staj Komisyonu, Bölüm Kurulunca biri öğretim üyesi olmak üzere en az üç öğretim elemanından oluşur.

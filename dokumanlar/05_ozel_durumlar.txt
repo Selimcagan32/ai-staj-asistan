@@ -1,0 +1,16 @@
+# Özel Durumlar: Yurt Dışı Staj, Yatay Geçiş, ÇAP, Gönüllü Staj
+
+## Yurt dışında staj yapabilir miyim?
+Evet. Yurt dışında staj yapmak isteyen öğrenciler IAESTE (Uluslararası Teknik Stajyer Öğrenci Mübadelesi Birliği) kanalıyla veya Sokrates/Erasmus programı çerçevesinde staj yapabilir. Kendi bulduğu yurt dışı firmalarda da Bölüm Kurulu'nun yazılı iznini alarak staj yapabilir. Yurt dışı stajında öğrenci tüm başvuru sürecini en baştan yürütür ve başvuru belgeleriyle birlikte Yurtdışı Staj Tercih Dilekçesi'ni doldurur. Bu dilekçeyle SGK tarafından iş kazası sigortası yapılmayacağını ve sigortadan yararlanamayacağını kabul etmiş sayılır. Yurt dışı stajının raporu Türkçe veya İngilizce hazırlanabilir.
+
+## Yatay geçişle geldim, önceki okulumda yaptığım stajdan muaf olabilir miyim?
+Yatay geçişle gelen öğrencilerin önceki bölümlerinde kabul edilmiş stajları, belgelendirilirse kabul edilebilir. Öğrenci bölümden ders muafiyeti isterken staj muafiyeti de talep etmelidir. Önce bölümün staj şartlarını incelemesi önerilir. MYO'da yapılan stajlar, Bilgisayar Mühendisliği ile eşdeğer olmayan bölümlerde yapılan stajlar, 20 iş gününden kısa stajlar ve belgelenemeyen stajlar için muafiyet istenemez. Muafiyet için önceki stajlara ait transkript, onaylı staj raporu, staj yapılan firma bilgisi, yetkilinin unvanı ve ad-soyadı ile staj iş günü süresini gösteren belgeler komisyona teslim edilmelidir; aksi halde muafiyet dikkate alınmaz.
+
+## Çift anadal (ÇAP) öğrencilerinin stajı nasıl değerlendirilir?
+Çift Anadal Programı (ÇAP) yapan öğrencilerin pratik çalışmaları bölüm staj komisyonu tarafından ayrıca değerlendirilir.
+
+## Gönüllü staj yapabilir miyim?
+Gönüllü staj ile ilgili bilgiler bölüm tarafından daha sonra eklenecektir. Gönüllü staj için başvuru yapmak isteyen öğrenciler Arş.Gör. Muhammet Çağrı Gencer'e (muhammetgencer@sdu.edu.tr) mail atarak bilgi alabilir.
+
+## Çalıştığım firmada staj yapabilir miyim? Sigortam ne olacak?
+Evet. Halihazırda aktif çalıştığı ve sigortası firma tarafından ödenen öğrenciler, başvuruda "SGK Yapılmayacak" (aktif çalıştığı firmada sigortası yapılacak öğrenciler için) Staj Tercih Dilekçesi'ni doldurur ve firmada aktif çalıştığını gösteren SGK hizmet dökümünü ekler. Bu durumda üniversite ek iş kazası sigortası yapmaz; sorumluluk öğrenciye aittir.

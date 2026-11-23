@@ -1,0 +1,31 @@
+# Staj Teslimi ve Değerlendirme (Staj Sonrası)
+
+## Staj bittikten sonra hangi belgeleri teslim etmeliyim?
+Staj bitince şu üç belge teslim edilir:
+1. Staj Teslim Tutanağı (doldurulmuş ve imzalanmış).
+2. Karton kapakla ciltlenmiş Staj Faaliyet Raporu (staj defteri).
+3. Firmanın doldurduğu Staj Değerlendirme Formu (kapalı ve kaşeli zarf içinde).
+
+## Staj belgelerini ne zamana kadar ve kime teslim etmeliyim?
+Belgeler, stajın bitiminden itibaren 30 gün içinde Bölüm Staj Komisyonu'na (staj sorumlusu hocaya) elden teslim edilir. Teslim süresi staj koşullarına göre değişebilir. Zamanında teslim edilmeyen stajlar kabul edilmez. Staj teslimi ile ilgili sorunlar için Dr.Öğr.Üyesi İbrahim Arda Çankaya'ya (ardacankaya@sdu.edu.tr) mail atılabilir.
+
+## Staj teslim tutanağı nasıl doldurulur? Kontrol listesinde neler var?
+Tutanakta noktalı tüm boşluklar (staj tarihleri, staj konusu, tarih, öğrenci no, ad soyad) doldurulur ve öğrenci imzalar. "Yapılacak Kontrol Listesi" tablosundaki her madde yapılıp "Öğrenci" sütunu işaretlenir. Kontrol listesi maddeleri:
+- Staj Faaliyet Raporu için bölüm sayfasındaki şablonu kullandım.
+- Raporda staj konusunu yazılım veya donanım olarak belirttim.
+- Raporu karton kapakla ciltlettim, ilk sayfayı cildin ön yüzüne kapak olarak bastırdım.
+- Raporun ikinci sayfasındaki fotoğraf bölümüne vesikalık fotoğrafımı yapıştırdım.
+- Dağıtım cetvelindeki "İş yeri amirinin onayı" bölümünü firma yetkilisine imzalatıp vergi numaralı firma kaşesini bastırdım (devlet kurumunda mühür yeterli).
+- Dağıtım cetvelindeki "Öğrenci imzası" bölümünü imzaladım.
+- Her gün için en az bir sayfa ayırdım ve her sayfanın altındaki "Kontrol" bölümünü sorumlu yetkiliye imzalatıp kaşe bastırdım (kaşe yoksa unvan-ad-soyad okunaklı yazılı).
+- Staj Değerlendirme Formunu firma yetkilisine doldurttum; kapalı zarfa koyulup zarfın kapağı yapıştırıldı, kapağa kaşe/mühür basılıp imzalandı.
+Uygun olmayan formatta veya özgün olmayan rapor, eksik ya da okunaksız belge, imza veya kaşe/mühür eksikliği olan belgeler teslim edilirse staj reddedilir; öğrenci tutanakta bunu kabul ettiğini beyan eder.
+
+## Staj değerlendirme formu nedir? Nasıl teslim edilir?
+Staj Değerlendirme Formu (gizlidir), iş yeri amiri tarafından bilgisayarda doldurulur. Formda öğrenci ve iş yeri bilgileri doldurulur; öğrenci işe ilgi, işin tanımlanması, alet-teçhizat kullanma, algılama gücü, sorumluluk, çalışma hızı, malzeme kullanma, zamanı verimli kullanma, problem çözme, iletişim, kurallara uyma, grup çalışması ve kendini geliştirme isteği gibi özelliklerden notlandırılır (Çok İyi 100-85, İyi 84-65, Orta 64-39, Geçer 40-30, Olumsuz 0-29). İş yeri amirinin adı soyadı yazılır, kaşe ve imza ıslak olarak eklenir. Form kapalı bir zarfa konur, zarfın kapağı yapıştırılır ve kapak üzerine ıslak kaşe-imza atılır. Firma bu zarfı genellikle öğrenciye verir ve öğrenci teslim tutanağıyla birlikte bölüme teslim eder. Firma isterse zarfı doğrudan bölüm adresine de gönderebilir: Süleyman Demirel Üniversitesi Bilgisayar Mühendisliği Bölümü Staj Komisyonu, SDÜ Batı Yerleşkesi, E-9 Blok, Zemin Kat, Çünür, Merkez / ISPARTA. Zarfın onaylı şekilde bölüme ulaşmasından öğrenci sorumludur.
+
+## Stajım nasıl değerlendirilir? Kabul edilmezse ne olur?
+Teslim edilen belgelere göre Bölüm Staj Komisyonu stajı değerlendirir. Stajın tamamı kabul edilmezse öğrenci stajı yeniden yapar. Stajın bir kısmı kabul edilmezse (eksik gün olarak kabul edilirse) öğrenci kabul edilmeyen gün sayısı kadar yeniden staj yapar. Staj faaliyet raporları öğrenci mezun olana kadar Staj Komisyonu arşivinde saklanır.
+
+## Staj değerlendirme sonucuna itiraz edebilir miyim?
+Evet. Öğrenci staj değerlendirme sonucunun ilanından itibaren bir hafta içinde bölüm başkanlığına dilekçeyle itiraz edebilir. İtiraz, bölüm staj komisyonunun görüşü alınarak bölüm kurulu tarafından incelenir ve başvuru tarihinden itibaren en geç bir hafta içinde karara bağlanır.

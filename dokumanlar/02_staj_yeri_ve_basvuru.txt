@@ -1,0 +1,46 @@
+# Staj Yeri Bulma ve Staj Başvurusu (Staj Öncesi)
+
+## Staj yapacağım iş yerini okul mu buluyor?
+Hayır. Staj yapılacak iş yerini bulmak tamamen öğrencinin sorumluluğundadır.
+
+## Staj yapacağım firmada hangi özellikler aranıyor?
+Firmada hem yazılım hem de donanım stajına uygun birimlerin olması beklenir. Belgeleri imzalayan yetkilinin ilgili staj biriminde görev alması ve farklı stajlar için farklı yetkililerin bulunması istenir. Bulunan firmanın Bölüm Staj Komisyonu tarafından uygun bulunması gerekir; uygun bulunmazsa öğrenci başka bir staj yeri bulmak zorundadır.
+
+## İki stajımı da aynı firmada yapabilir miyim?
+Evet. Daha önce staj yapılan firmada ikinci staj da yapılabilir. İki staj aynı yaz arka arkaya yapılacaksa ve tarihler birleştirilecekse iki başvurunun da en başta birlikte yapılması gerekir. İki staj arasında en az 1 hafta boşluk olacaksa başvurular ayrı ayrı yapılabilir.
+
+## Staj başvurusu nasıl yapılır? Başvuru adımları nelerdir?
+Staj yeri bulunduktan sonra öğrenci şu dört belgeyi hazırlar:
+1. Zorunlu Staj Başvuru Formu (2 nüsha): Bilgisayarda eksiksiz doldurulur. "Öğrenci İmzası" alanını öğrenci imzalar, "Firma / Kaşe / İmza" alanını firma imzalar ve kaşe/mühür basar. Formun 4 numaralı bölümünde staj başlangıç ve bitiş tarihleri iş günlerine denk gelecek ve toplam 20 iş günü olacak şekilde yazılır.
+2. İş Sağlığı ve Güvenliği (İSG) Eğitimi Sertifikası.
+3. Staj Tercih Dilekçesi: Durumuna uygun dilekçe türü seçilir, yazılım veya donanım kutucuğu işaretlenir, imza dışındaki tüm boşluklar bilgisayarda doldurulur ve öğrenci imzalar.
+4. Güncel Transkript.
+Bu dört belge, staj başlangıç tarihinden EN AZ 2 HAFTA ÖNCE, çıktıları elden ya da taranmış/PDF halleri e-posta ile Arş.Gör. Muhammet Çağrı Gencer'e (muhammetgencer@sdu.edu.tr) teslim edilir. Bundan sonra öğrencinin başvuru için yapacağı başka bir işlem yoktur.
+
+## Hangi staj tercih dilekçesini doldurmalıyım?
+Üç tür Staj Tercih Dilekçesi vardır:
+- Yurt içinde staj yapacak öğrenciler: Staj Tercih Dilekçesi (normal).
+- Yurt dışında staj yapacak öğrenciler: Yurtdışı Staj Tercih Dilekçesi. Bu dilekçeyle öğrenci, üniversitenin sigorta yapmayacağını ve sigortayla ilgili sorumluluğun kendisine ait olduğunu kabul eder.
+- Halihazırda aktif çalıştığı firmada staj yapacak ve sigortası firma tarafından ödenen öğrenciler: SGK Yapılmayacak (Aktif Çalıştığı Firmada Sigortası Yapılacak Öğrenciler İçin) Staj Tercih Dilekçesi. Bu dilekçeye ek olarak firmada aktif çalışıldığını gösteren SGK hizmet dökümü de verilir; üniversite ek sigorta yapmaz.
+Dilekçede yazılım kutucuğu işaretlenirse not Staj-I'e, donanım işaretlenirse Staj-II'ye girilir. Öğrenci staj defterini seçtiği staj türüne göre hazırlamakla yükümlüdür.
+
+## İş Sağlığı ve Güvenliği (İSG) sertifikası zorunlu mu? Nasıl alınır?
+Evet, zorunludur. 6331 sayılı İş Sağlığı ve Güvenliği Kanunu ve ilgili yönetmelik gereği staj yapacak öğrencinin İSG eğitimi alması ve sertifikasını bölüme teslim etmesi gerekir. Sertifika, ogem.sdu.edu.tr (SDÜNet üzerinden Öğrenci Eğitim Modülü - OGEM) adresine giriş yapılarak (üye değilseniz üye olarak), eğitimler tamamlanıp sınava girilerek alınır.
+
+## Transkripti nereden alırım?
+sdunet.sdu.edu.tr adresine öğrenci numarası ve şifreyle giriş yapılır. Hızlı Erişim ekranından "Öğrenci Bilgi Sistemi" seçilir. Soldaki menüde "Ders ve Dönem İşlemleri" altındaki "Transkript" seçeneğine tıklanarak güncel transkripte ulaşılır.
+
+## Başvurudan sonra hemen staja başlayabilir miyim?
+Hayır. Staj başlangıç tarihi, bölüme başvuru yapıldıktan sonra en erken 10 gün sonra olabilir. Bu sürede Bölüm Staj Komisyonu firmayı inceler, stajı onaylar, başvuruyu arşivler, evraklar Mühendislik Fakültesi muhasebe birimine aktarılır ve SGK giriş işlemleri yapılır. Bu yüzden belgeleri staj başlangıcından en az 2 hafta önce teslim etmek gerekir.
+
+## Staj başvurumun kabul edilmesi için ne gerekir?
+Başvuru belgelerinin eksiksiz olması, seçilen firmanın staj için uygun olması, öğrencinin başvurduğu stajı yapabilecek durumda olması (yarıyıl şartlarını sağlaması) ve İSG sertifikasının teslim edilmesi gerekir. Başvuru evraklarında eksik varsa başvuru reddedilir.
+
+## Staj başvurum reddedilirse ne olur?
+Bölüm Staj Komisyonu başvuruyu inceler; uygunsa kabul eder, değilse reddeder. Başvurusu reddedilen öğrenci farklı bir staj yeri bularak yeniden başvuru yapar.
+
+## Stajda sigortamı (SGK) kim ödüyor? İşe giriş bildirgesi nedir?
+Zorunlu stajlarda iş kazası ve meslek hastalığı sigortası primini üniversite öder (5510 sayılı kanun). SGK girişi, staja başlama tarihinden hemen önce (yaklaşık 1 hafta kala, en geç staj başlangıcından bir gün önce) yapılır. SGK Sigorta ve İşe Giriş Bildirgesi fakülte aracılığıyla Bölüm Staj Komisyonu'na iletilir; tek nüshadır ve komisyonda saklanır. Öğrenci bu belgeye e-Devlet üzerinden ulaşabilir; ulaşamazsa dilekçeyle komisyondan bir kopyasını isteyebilir. Yurt dışı stajlarda ve aktif çalışılan firmada yapılan stajlarda üniversite sigorta yapmaz.
+
+## Firma SGK'yı kimin ödeyeceğini ve stajın zorunlu olduğunu belgelememi istiyor. Ne yapmalıyım?
+Bölüm Staj Komisyonu'ndan "Staj Zorunluluk Belgesi" istenir. Öğrenci e-posta adresinizden muhammetgencer@sdu.edu.tr adresine, konu satırına "Staj Zorunluluk Belgesi Talebi" yazarak; mailin içine öğrenci numaranızı, adınızı, soyadınızı, telefonunuzu ve başvuru yapacağınız firma bilgilerini açıkça yazarak talepte bulunursunuz. Belge, mailinize cevap olarak PDF eki şeklinde gönderilir.
