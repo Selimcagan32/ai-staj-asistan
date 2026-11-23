@@ -4,7 +4,7 @@
 
 # AI Staj Asistanı
 
-Üniversite öğrencilerinin staj süreciyle ilgili sorularını, okulun resmi staj dökümanlarına dayanarak yanıtlayan bir **RAG (Retrieval-Augmented Generation)** tabanlı yapay zeka chatbot'u.
+Üniversite öğrencilerinin staj süreciyle ilgili sorularını, okulun resmi staj dökümanlarına dayanarak yanıtlayan, **RAG (Retrieval-Augmented Generation)** tabanlı bir yapay zeka **agent**'ı. Cevap dökümanlarda yoksa, öğrenci için staj komisyonuna hazır bir mail taslağı oluşturabilir (**MCP** aracı ile).
 
 🔗 **Canlı Demo:** [ai-staj-asistan.streamlit.app](https://ai-staj-asistan.streamlit.app/)
 
