@@ -86,7 +86,9 @@ streamlit run app.py
 ```
 ai-staj-asistan/
 ├── app.py                  # Streamlit arayüzü
-├── chatbot.py               # RAG mantığı ve Gemini API entegrasyonu
+├── agent.py                 # Agent döngüsü (Gemini function calling + araçlar)
+├── mail_mcp_server.py       # MCP server: komisyona mail linki hazırlama aracı
+├── chatbot.py               # Eski basit RAG sürümü (yedek)
 ├── document_loader.py       # PDF/Word/txt döküman okuma
 ├── text_splitter.py         # Metin parçalama (chunking)
 ├── vector_db.py              # ChromaDB entegrasyonu
