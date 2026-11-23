@@ -42,6 +42,12 @@ Kullanıcı Sorusu → Agent (Gemini)
                                        → komisyona_mail_hazirla (MCP) → "Gmail'de aç" / "Mail uygulamasında aç"
 ```
 
+### 📧 Komisyona Mail Özelliği
+
+- Hiçbir hesaba giriş yapılmaz, mail **otomatik gönderilmez**. Sadece hazır doldurulmuş bir link üretilir; öğrenci maili kontrol edip kendisi gönderir.
+- Alıcı adresi kodda sabittir, agent değiştiremez.
+- Cihaz otomatik algılanır: bilgisayarda **Gmail'de aç**, telefonda **Mail uygulamasında aç** butonu gösterilir.
+
 ## ✨ Özellikler
 
 - 🔍 Anlamsal arama (kelime eşleşmesi değil, anlam bazlı sonuç bulma)
