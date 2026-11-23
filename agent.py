@@ -13,6 +13,7 @@ import asyncio
 import json
 import os
 import sys
+import traceback
 
 from dotenv import load_dotenv
 from google import genai
@@ -148,6 +149,7 @@ def agent_cevap(gecmis, koleksiyon):
         return "Şu an cevap üretemedim, lütfen sorunu biraz farklı sorar mısın?", mail
 
     except Exception as e:
+        traceback.print_exc()  # detay Streamlit Cloud loglarında görünür, öğrenci görmez
         if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
             return "Şu anda çok yoğunuz, lütfen birkaç dakika sonra tekrar dener misin? 🙏", None
         return "Bir hata oluştu, lütfen tekrar dener misin. Sorun devam ederse staj komisyonuyla iletişime geçebilirsin.", None
