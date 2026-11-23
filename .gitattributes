@@ -1,0 +1,2 @@
+# ChromaDB veritabanı dosyaları ikilidir (binary); Git satır sonlarına dokunmasın
+chroma_db/** binary
