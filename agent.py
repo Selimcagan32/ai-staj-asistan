@@ -42,10 +42,14 @@ Staj ile ilgili her soruda ÖNCE dokumanlarda_ara aracını kullan ve SADECE bul
 Cevap dökümanlarda yoksa:
 1. "Bu konuda dökümanlarda net bir bilgi bulamadım. Staj komisyonuna mail hazırlayayım mı?" diye sor.
 2. Öğrenci evet derse adını, soyadını ve öğrenci numarasını iste.
-3. Bu bilgiler gelince komisyona_mail_hazirla aracını çağır. Konu kısa olsun. İçerikte kibar bir selamlama, öğrencinin sorusu, ad soyad ve öğrenci numarası olsun.
-4. Araç çalışınca sadece "Mailin hazır, aşağıdaki butondan açıp kontrol ettikten sonra gönderebilirsin." de. Linkleri metne YAZMA, butonu uygulama gösteriyor.
+3. Bu bilgiler gelince komisyona_mail_hazirla aracını çağır. Konu kısa olsun. İçerikte kibar bir selamlama ("Sayın Hocam,"), öğrencinin sorusu, ad soyad ve öğrenci numarası olsun.
+   konu_turu seçimi:
+   - "teslim": staj bittikten sonraki işler (staj teslim tutanağı, staj faaliyet raporu/defteri, değerlendirme formu, belge teslimi). Bu mail Dr.Öğr.Üyesi İbrahim Arda Çankaya'ya gider.
+   - "basvuru": staj başvurusu, staj öncesi belgeler, gönüllü staj ve diğer her konu. Bu mail Arş.Gör. Muhammet Çağrı Gencer'e gider.
+   Sorunun hangisi olduğundan emin değilsen öğrenciye "Sorun staj başvurusuyla mı, staj teslimiyle mi ilgili?" diye sor.
+4. Araç çalışınca mailin kime gittiğini söyle (örneğin "Mailin Arş.Gör. Muhammet Çağrı Gencer'e hazır") ve aşağıdaki butondan açıp kontrol ettikten sonra gönderebileceğini belirt. Linkleri metne YAZMA, butonu uygulama gösteriyor.
 
-Mail asla otomatik gönderilmez, öğrenci kendisi gönderir. Alıcı adresi sabittir, değiştirilemez."""
+Mail asla otomatik gönderilmez, öğrenci kendisi gönderir. Alıcı adresleri sabittir, değiştirilemez."""
 
 
 DOKUMAN_ARACI = types.FunctionDeclaration(
@@ -70,7 +74,11 @@ async def _mcp_araclari_listele():
 async def _mcp_arac_cagir(ad, argumanlar):
     async with Client(MCP_SERVER) as mcp:
         sonuc = await mcp.call_tool(ad, argumanlar)
-        return "".join(p.text for p in sonuc.content if hasattr(p, "text"))
+        metin = "".join(p.text for p in sonuc.content if hasattr(p, "text"))
+        if sonuc.is_error:
+            # Hatayı Gemini'ye geri ver, düzeltip tekrar denesin
+            return json.dumps({"hata": metin}, ensure_ascii=False)
+        return metin
 
 
 def _mcp_araclarini_gemini_formatina_cevir():
@@ -139,7 +147,7 @@ def agent_cevap(gecmis, koleksiyon):
             cevap_parcalari = []
             for cagri in cagrilar:
                 sonuc = _araci_calistir(cagri.name, dict(cagri.args or {}), koleksiyon)
-                if cagri.name == "komisyona_mail_hazirla":
+                if cagri.name == "komisyona_mail_hazirla" and "hata" not in sonuc:
                     mail = sonuc
                 cevap_parcalari.append(
                     types.Part.from_function_response(name=cagri.name, response=sonuc)
