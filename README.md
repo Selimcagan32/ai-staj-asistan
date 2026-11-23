@@ -52,7 +52,9 @@ Kullanıcı Sorusu → Agent (Gemini)
 
 - 🔍 Anlamsal arama (kelime eşleşmesi değil, anlam bazlı sonuç bulma)
 - 🌐 Türkçe dil desteği için multilingual embedding modeli
-- ⚡ Sık sorulan sorular için önbellekleme (caching), hız ve API kotası tasarrufu
+- 🤖 Araç kullanan agent yapısı (Gemini function calling)
+- 📧 Cevap bulunamazsa komisyona tek tıkla mail taslağı (MCP)
+- 🧠 Sohbet geçmişini hatırlama
 - 🛡️ Hata durumlarında kullanıcı dostu geri bildirim
 - 💬 Gerçek zamanlı, akıcı sohbet arayüzü
 - 🏫 Kuruma özel, tanıdık bir görünüm (okul logosu ile)
