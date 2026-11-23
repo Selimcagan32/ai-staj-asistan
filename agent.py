@@ -1,0 +1,170 @@
+"""
+Staj Asistanı Agent
+
+Gemini function calling ile çalışan basit bir agent döngüsü.
+İki aracı var:
+    - dokumanlarda_ara      -> ChromaDB'de staj dökümanlarını arar (yerel araç)
+    - komisyona_mail_hazirla -> mail_mcp_server.py'deki MCP aracı (mail göndermez, link üretir)
+
+MCP server her çağrıda alt süreç olarak açılıp kapatılır.
+"""
+
+import asyncio
+import json
+import os
+import sys
+
+from dotenv import load_dotenv
+from google import genai
+from google.genai import types
+from mcp import Client, StdioServerParameters
+
+from vector_db import benzer_parcalari_bul
+
+load_dotenv()
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+
+MODEL = "gemini-flash-lite-latest"
+MAKS_ADIM = 5  # sonsuz araç döngüsüne karşı sınır
+
+MCP_SERVER = StdioServerParameters(
+    command=sys.executable,
+    args=[os.path.join(os.path.dirname(os.path.abspath(__file__)), "mail_mcp_server.py")],
+)
+
+SISTEM_MESAJI = """Sen bir üniversitenin staj süreciyle ilgili sorulara cevap veren, samimi bir asistansın. Türkçe, kısa ve net cevap ver.
+
+Selamlaşma veya "sen kimsin" gibi sorularda kendini kısaca tanıt: staj süresi, başvuru adımları, staj raporu gibi konularda yardımcı olduğunu söyle.
+
+Staj ile ilgili her soruda ÖNCE dokumanlarda_ara aracını kullan ve SADECE bulduğun bilgilere dayanarak cevap ver. Uydurma bilgi verme.
+
+Cevap dökümanlarda yoksa:
+1. "Bu konuda dökümanlarda net bir bilgi bulamadım. Staj komisyonuna mail hazırlayayım mı?" diye sor.
+2. Öğrenci evet derse adını, soyadını ve öğrenci numarasını iste.
+3. Bu bilgiler gelince komisyona_mail_hazirla aracını çağır. Konu kısa olsun. İçerikte kibar bir selamlama, öğrencinin sorusu, ad soyad ve öğrenci numarası olsun.
+4. Araç çalışınca sadece "Mailin hazır, aşağıdaki butondan açıp kontrol ettikten sonra gönderebilirsin." de. Linkleri metne YAZMA, butonu uygulama gösteriyor.
+
+Mail asla otomatik gönderilmez, öğrenci kendisi gönderir. Alıcı adresi sabittir, değiştirilemez."""
+
+
+DOKUMAN_ARACI = types.FunctionDeclaration(
+    name="dokumanlarda_ara",
+    description="Staj dökümanlarında (yönerge, esaslar vb.) arama yapar ve en alakalı metin parçalarını döner.",
+    parameters_json_schema={
+        "type": "object",
+        "properties": {"sorgu": {"type": "string", "description": "Aranacak soru veya anahtar kelimeler"}},
+        "required": ["sorgu"],
+    },
+)
+
+
+# ---------- MCP ----------
+
+async def _mcp_araclari_listele():
+    async with Client(MCP_SERVER) as mcp:
+        sonuc = await mcp.list_tools()
+        return sonuc.tools
+
+
+async def _mcp_arac_cagir(ad, argumanlar):
+    async with Client(MCP_SERVER) as mcp:
+        sonuc = await mcp.call_tool(ad, argumanlar)
+        return "".join(p.text for p in sonuc.content if hasattr(p, "text"))
+
+
+def _mcp_araclarini_gemini_formatina_cevir():
+    """MCP server'daki araçları Gemini'nin anlayacağı fonksiyon tanımlarına çevirir."""
+    araclar = asyncio.run(_mcp_araclari_listele())
+    return [
+        types.FunctionDeclaration(
+            name=a.name,
+            description=a.description or "",
+            parameters_json_schema=a.input_schema,
+        )
+        for a in araclar
+    ]
+
+
+_arac_tanimlari = None
+
+
+def _araclar():
+    global _arac_tanimlari
+    if _arac_tanimlari is None:
+        mcp_araclari = _mcp_araclarini_gemini_formatina_cevir()
+        _arac_tanimlari = [types.Tool(function_declarations=[DOKUMAN_ARACI, *mcp_araclari])]
+    return _arac_tanimlari
+
+
+# ---------- Agent ----------
+
+def _araci_calistir(ad, argumanlar, koleksiyon):
+    if ad == "dokumanlarda_ara":
+        sonuclar = benzer_parcalari_bul(argumanlar.get("sorgu", ""), koleksiyon, sonuc_sayisi=8)
+        return {"parcalar": sonuclar["documents"][0]}
+    # Geri kalan her şey MCP aracı
+    return json.loads(asyncio.run(_mcp_arac_cagir(ad, argumanlar)))
+
+
+def agent_cevap(gecmis, koleksiyon):
+    """
+    gecmis: [{"rol": "user"/"assistant", "icerik": "..."}, ...] (son mesaj öğrencinin sorusu)
+    Dönen değer: (cevap_metni, mail) -> mail yoksa None, varsa {"gmail_link", "mailto_link", ...}
+    """
+    icerikler = [
+        types.Content(
+            role="user" if m["rol"] == "user" else "model",
+            parts=[types.Part(text=m["icerik"])],
+        )
+        for m in gecmis
+    ]
+    mail = None
+
+    try:
+        config = types.GenerateContentConfig(
+            system_instruction=SISTEM_MESAJI,
+            tools=_araclar(),
+            automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=True),
+        )
+
+        for _ in range(MAKS_ADIM):
+            yanit = client.models.generate_content(model=MODEL, contents=icerikler, config=config)
+            cagrilar = yanit.function_calls or []
+
+            if not cagrilar:
+                return (yanit.text or "").strip(), mail
+
+            icerikler.append(yanit.candidates[0].content)
+            cevap_parcalari = []
+            for cagri in cagrilar:
+                sonuc = _araci_calistir(cagri.name, dict(cagri.args or {}), koleksiyon)
+                if cagri.name == "komisyona_mail_hazirla":
+                    mail = sonuc
+                cevap_parcalari.append(
+                    types.Part.from_function_response(name=cagri.name, response=sonuc)
+                )
+            icerikler.append(types.Content(role="user", parts=cevap_parcalari))
+
+        return "Şu an cevap üretemedim, lütfen sorunu biraz farklı sorar mısın?", mail
+
+    except Exception as e:
+        if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
+            return "Şu anda çok yoğunuz, lütfen birkaç dakika sonra tekrar dener misin? 🙏", None
+        return "Bir hata oluştu, lütfen tekrar dener misin. Sorun devam ederse staj komisyonuyla iletişime geçebilirsin.", None
+
+
+if __name__ == "__main__":
+    from vector_db import veritabani_olustur
+
+    koleksiyon = veritabani_olustur()
+    gecmis = []
+    while True:
+        soru = input("\nSorunuz (çıkmak için 'q'): ")
+        if soru.lower() == "q":
+            break
+        gecmis.append({"rol": "user", "icerik": soru})
+        cevap, mail = agent_cevap(gecmis, koleksiyon)
+        gecmis.append({"rol": "assistant", "icerik": cevap})
+        print(f"\nCevap: {cevap}")
+        if mail:
+            print(f"Gmail: {mail['gmail_link']}\nMailto: {mail['mailto_link']}")
