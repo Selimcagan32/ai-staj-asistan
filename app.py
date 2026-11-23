@@ -1,6 +1,6 @@
 import streamlit as st
 from vector_db import veritabani_olustur
-from chatbot import cevap_uret
+from agent import agent_cevap
 from PIL import Image
 
 logo = Image.open("gorseller/okul_logo.png")
@@ -33,6 +33,20 @@ def veritabani_yukle():
     return koleksiyon
 koleksiyon = veritabani_yukle()
 
+def telefon_mu():
+    """Tarayıcının User-Agent bilgisinden telefon olup olmadığını anlar."""
+    user_agent = (st.context.headers.get("User-Agent") or "").lower()
+    return any(k in user_agent for k in ["android", "iphone", "ipad", "mobile"])
+
+
+def mail_butonu_goster(mail):
+    """Cihaza göre tek buton: telefonda mail uygulaması, bilgisayarda Gmail."""
+    if telefon_mu():
+        st.link_button("📱 Mail uygulamasında aç", mail["mailto_link"])
+    else:
+        st.link_button("📧 Gmail'de aç", mail["gmail_link"])
+
+
 # Sohbet geçmişini hafızada tut
 if "mesajlar" not in st.session_state:
     st.session_state.mesajlar = []
@@ -41,6 +55,8 @@ if "mesajlar" not in st.session_state:
 for mesaj in st.session_state.mesajlar:
     with st.chat_message(mesaj["rol"]):
         st.write(mesaj["icerik"])
+        if mesaj.get("mail"):
+            mail_butonu_goster(mesaj["mail"])
 
 # Kullanıcıdan yeni mesaj al
 kullanici_sorusu = st.chat_input("Sorunuzu yazın...")
@@ -54,8 +70,10 @@ if kullanici_sorusu:
     # Cevabı üret ve göster
     with st.chat_message("assistant"):
         with st.spinner("Düşünüyorum..."):
-            cevap = cevap_uret(kullanici_sorusu, koleksiyon)
-            st.write(cevap)
+            cevap, mail = agent_cevap(st.session_state.mesajlar, koleksiyon)
+        st.write(cevap)
+        if mail:
+            mail_butonu_goster(mail)
 
-    # Cevabı geçmişe ekle
-    st.session_state.mesajlar.append({"rol": "assistant", "icerik": cevap})
+    # Cevabı (varsa mail linkleriyle) geçmişe ekle
+    st.session_state.mesajlar.append({"rol": "assistant", "icerik": cevap, "mail": mail})
