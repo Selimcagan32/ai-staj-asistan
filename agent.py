@@ -13,6 +13,7 @@ import asyncio
 import json
 import os
 import sys
+import time
 import traceback
 
 from dotenv import load_dotenv
@@ -35,9 +36,9 @@ MCP_SERVER = StdioServerParameters(
 
 SISTEM_MESAJI = """Sen bir üniversitenin staj süreciyle ilgili sorulara cevap veren, samimi bir asistansın. Türkçe, kısa ve net cevap ver.
 
-Selamlaşma veya "sen kimsin" gibi sorularda kendini kısaca tanıt: staj süresi, başvuru adımları, staj raporu gibi konularda yardımcı olduğunu söyle.
+SADECE selamlaşma veya "sen kimsin" gibi sorularda kendini kısaca tanıt: staj süresi, başvuru adımları, staj raporu gibi konularda yardımcı olduğunu söyle. Diğer cevaplara tanıtım veya selamlama EKLEME, doğrudan soruyu cevapla.
 
-Staj ile ilgili her soruda ÖNCE dokumanlarda_ara aracını kullan ve SADECE bulduğun bilgilere dayanarak cevap ver. Uydurma bilgi verme.
+Staj ile ilgili her soruda ÖNCE dokumanlarda_ara aracını kullan ve SADECE bulduğun bilgilere dayanarak cevap ver. Uydurma bilgi verme. Arama yapmadan asla "bulamadım" deme. İlk aramada bulamazsan farklı kelimelerle bir kez daha ara.
 
 Cevap dökümanlarda yoksa:
 1. "Bu konuda dökümanlarda net bir bilgi bulamadım. Staj komisyonuna mail hazırlayayım mı?" diye sor.
@@ -109,10 +110,30 @@ def _araclar():
 
 def _araci_calistir(ad, argumanlar, koleksiyon):
     if ad == "dokumanlarda_ara":
-        sonuclar = benzer_parcalari_bul(argumanlar.get("sorgu", ""), koleksiyon, sonuc_sayisi=8)
-        return {"parcalar": sonuclar["documents"][0]}
+        # Gemini bazen şemaya uymayıp "queries" listesi gönderiyor; ikisini de kabul et
+        sorgular = argumanlar.get("sorgu") or argumanlar.get("queries") or argumanlar.get("query") or ""
+        if isinstance(sorgular, str):
+            sorgular = [sorgular]
+        parcalar = []
+        for sorgu in sorgular:
+            for parca in benzer_parcalari_bul(sorgu, koleksiyon, sonuc_sayisi=8)["documents"][0]:
+                if parca not in parcalar:
+                    parcalar.append(parca)
+        return {"parcalar": parcalar[:10]}
     # Geri kalan her şey MCP aracı
     return json.loads(asyncio.run(_mcp_arac_cagir(ad, argumanlar)))
+
+
+def _gemini_cagir(icerikler, config, deneme_sayisi=3):
+    """Gemini'yi çağırır. Model geçici olarak yoğunsa (503) birkaç saniye bekleyip tekrar dener."""
+    for deneme in range(deneme_sayisi):
+        try:
+            return client.models.generate_content(model=MODEL, contents=icerikler, config=config)
+        except Exception as e:
+            yogun = "503" in str(e) or "UNAVAILABLE" in str(e)
+            if not yogun or deneme == deneme_sayisi - 1:
+                raise
+            time.sleep(2 * (deneme + 1))  # 2 sn, sonra 4 sn bekle
 
 
 def agent_cevap(gecmis, koleksiyon):
@@ -137,7 +158,7 @@ def agent_cevap(gecmis, koleksiyon):
         )
 
         for _ in range(MAKS_ADIM):
-            yanit = client.models.generate_content(model=MODEL, contents=icerikler, config=config)
+            yanit = _gemini_cagir(icerikler, config)
             cagrilar = yanit.function_calls or []
 
             if not cagrilar:
@@ -158,7 +179,7 @@ def agent_cevap(gecmis, koleksiyon):
 
     except Exception as e:
         traceback.print_exc()  # detay Streamlit Cloud loglarında görünür, öğrenci görmez
-        if "429" in str(e) or "RESOURCE_EXHAUSTED" in str(e):
+        if any(k in str(e) for k in ("429", "RESOURCE_EXHAUSTED", "503", "UNAVAILABLE")):
             return "Şu anda çok yoğunuz, lütfen birkaç dakika sonra tekrar dener misin? 🙏", None
         return "Bir hata oluştu, lütfen tekrar dener misin. Sorun devam ederse staj komisyonuyla iletişime geçebilirsin.", None
 
