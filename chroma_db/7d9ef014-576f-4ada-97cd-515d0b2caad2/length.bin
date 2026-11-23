@@ -1,0 +1,3 @@
+invalid type: string "Konu: Özel Durumlar: Yurt Dışı Staj, Yatay Geçiş, ÇAP, Gönüllü Staj\nSoru: Çift anadal (ÇAP) öğrencilerinin stajı nasıl değerlendirilir?\nÇift Anadal Programı (ÇAP) yapan öğrencilerin pratik çalışmaları bölüm staj komisyonu tarafından ayrıca değerlendirilir.", expected f64i her madde yapılıp \"Öğrenci\"w changed
+    >>> m(input_3x3)
+    tens
