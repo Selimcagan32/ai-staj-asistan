@@ -2,7 +2,8 @@ name: Keep Streamlit app awake
 
 on:
   schedule:
-    - cron: "0 */6 * * *"
+    # 2 saatte bir, saat başı yerine :17'de (GitHub saat başlarında çalışmaları atlayabiliyor)
+    - cron: "17 */2 * * *"
   workflow_dispatch:
 
 jobs:
