@@ -90,9 +90,10 @@ ai-staj-asistan/
 ├── mail_mcp_server.py       # MCP server: komisyona mail linki hazırlama aracı
 ├── chatbot.py               # Eski basit RAG sürümü (yedek)
 ├── document_loader.py       # PDF/Word/txt döküman okuma
-├── text_splitter.py         # Metin parçalama (chunking)
+├── text_splitter.py         # Metin parçalama (her soru-cevap ayrı parça)
 ├── vector_db.py              # ChromaDB entegrasyonu
-├── dokumanlar/                # Staj ile ilgili resmi dökümanlar
+├── dokumanlar/                # Bilgi bankası: konulara göre soru-cevap dosyaları (tekrarsız)
+├── kaynaklar/                 # Orijinal resmi belgeler (arşiv, veritabanına yüklenmez)
 ├── requirements.txt
 └── README.md
 ```
