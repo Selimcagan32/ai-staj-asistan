@@ -1,6 +1,10 @@
+import re
+
+
 def metni_parcala(metin, parca_boyutu=500, ortusme=50):
     """
-    Uzun bir metni küçük parçalara böler.
+    Uzun bir metni sabit boyutlu parçalara böler.
+    Başlık yapısı olmayan dosyalar (PDF/Word) için kullanılır.
 
     parca_boyutu: her parçanın yaklaşık karakter sayısı
     ortusme: parçalar arasında ne kadar örtüşme olacağı
@@ -18,17 +22,42 @@ def metni_parcala(metin, parca_boyutu=500, ortusme=50):
     return parcalar
 
 
+def basliklara_gore_parcala(metin):
+    """
+    "# Konu" ve "## Soru" başlıklı metni, her "## Soru" ve cevabı ayrı bir parça
+    olacak şekilde böler. Her parçanın başına konu başlığı eklenir ki parça tek
+    başına okunduğunda da hangi konuya ait olduğu anlaşılsın.
+    """
+    konu = ""
+    konu_eslesme = re.search(r"^# (.+)$", metin, flags=re.MULTILINE)
+    if konu_eslesme:
+        konu = konu_eslesme.group(1).strip()
+
+    bolumler = re.split(r"^## ", metin, flags=re.MULTILINE)[1:]  # ilk eleman konu başlığı
+    parcalar = []
+    for bolum in bolumler:
+        bolum = bolum.strip()
+        if bolum:
+            parcalar.append(f"Konu: {konu}\nSoru: {bolum}" if konu else bolum)
+    return parcalar
+
+
 def tum_dokumanlari_parcala(dokumanlar, parca_boyutu=900, ortusme=150):
     """
     document_loader'dan gelen döküman listesini alır,
     her birini parçalara böler.
+
+    "## " başlıkları olan dosyalar soru-cevap bazlı, diğerleri sabit boyutlu bölünür.
 
     Dönen format: [{"dosya_adi": ..., "parca_no": ..., "metin": ...}, ...]
     """
     tum_parcalar = []
 
     for dokuman in dokumanlar:
-        parcalar = metni_parcala(dokuman["metin"], parca_boyutu, ortusme)
+        if re.search(r"^## ", dokuman["metin"], flags=re.MULTILINE):
+            parcalar = basliklara_gore_parcala(dokuman["metin"])
+        else:
+            parcalar = metni_parcala(dokuman["metin"], parca_boyutu, ortusme)
 
         for i, parca in enumerate(parcalar):
             tum_parcalar.append({
