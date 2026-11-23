@@ -29,12 +29,17 @@ Sistem, kullanıcının sorusuna cevap üretirken **sadece okulun resmi döküma
 1. **Döküman İşleme** – Okulun staj dökümanları (PDF/Word) okunup metne çevrilir
 2. **Parçalama (Chunking)** – Metinler, bağlamı koruyacak şekilde küçük parçalara bölünür
 3. **Embedding & Vector Database** – Her parça, anlamsal aramaya uygun hale getirilip ChromaDB'ye kaydedilir
-4. **Retrieval** – Kullanıcı bir soru sorduğunda, en alakalı parçalar veritabanından bulunur
-5. **Generation** – Bulunan parçalar, Gemini API'ye bağlam olarak verilir ve doğal bir cevap üretilir
+4. **Agent** – Gemini, soruya göre hangi aracı kullanacağına kendisi karar verir:
+   - `dokumanlarda_ara` → ChromaDB'de en alakalı döküman parçalarını bulur
+   - `komisyona_mail_hazirla` → MCP server'daki araç; komisyona hazır mail linki üretir
+5. **Generation** – Araç sonuçlarına dayanarak doğal bir cevap üretilir
 6. **Arayüz** – Tüm süreç, Streamlit ile oluşturulan sohbet arayüzünde kullanıcıya sunulur
 
 ```
-Kullanıcı Sorusu → Vector Search (ChromaDB) → İlgili Döküman Parçaları → Gemini API → Cevap
+Kullanıcı Sorusu → Agent (Gemini)
+                     ├─ dokumanlarda_ara (ChromaDB) → Cevap
+                     └─ Cevap yoksa → "Mail hazırlayayım mı?" → Ad, soyad, öğrenci no
+                                       → komisyona_mail_hazirla (MCP) → "Gmail'de aç" / "Mail uygulamasında aç"
 ```
 
 ## ✨ Özellikler
