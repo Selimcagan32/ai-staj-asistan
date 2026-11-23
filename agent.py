@@ -12,6 +12,7 @@ MCP server her çağrıda alt süreç olarak açılıp kapatılır.
 import asyncio
 import json
 import os
+import re
 import sys
 import time
 import traceback
@@ -28,6 +29,7 @@ client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 MODEL = "gemini-flash-lite-latest"
 MAKS_ADIM = 5  # sonsuz araç döngüsüne karşı sınır
+ON_ARAMA_MIN_KELIME = 3  # bundan kısa mesajlarda baştan döküman araması yapılmaz
 
 MCP_SERVER = StdioServerParameters(
     command=sys.executable,
@@ -36,9 +38,12 @@ MCP_SERVER = StdioServerParameters(
 
 SISTEM_MESAJI = """Sen bir üniversitenin staj süreciyle ilgili sorulara cevap veren, samimi bir asistansın. Türkçe, kısa ve net cevap ver.
 
-SADECE selamlaşma veya "sen kimsin" gibi sorularda kendini kısaca tanıt: staj süresi, başvuru adımları, staj raporu gibi konularda yardımcı olduğunu söyle. Diğer cevaplara tanıtım veya selamlama EKLEME, doğrudan soruyu cevapla.
+SADECE selamlaşma veya "sen kimsin" gibi sorularda kendini kısaca tanıt: staj süresi, başvuru adımları, staj raporu gibi konularda yardımcı olduğunu söyle. Bu tür mesajlarda hiçbir araç çağırma. Diğer cevaplara tanıtım veya selamlama EKLEME, doğrudan soruyu cevapla.
 
-Staj ile ilgili her soruda ÖNCE dokumanlarda_ara aracını kullan ve SADECE bulduğun bilgilere dayanarak cevap ver. Uydurma bilgi verme. Arama yapmadan asla "bulamadım" deme. İlk aramada bulamazsan farklı kelimelerle bir kez daha ara.
+Öğrencinin son mesajının altında "[OTOMATİK DÖKÜMAN ARAMASI]" başlığıyla döküman parçaları verilebilir. Bu parçaları sistem bulmuştur, öğrenci yazmamıştır.
+- Bu parçalar soruyu cevaplıyorsa araç çağırmadan doğrudan cevap ver.
+- Parçalar yetersizse, alakasızsa ya da hiç parça verilmediyse ve soru stajla ilgiliyse, dokumanlarda_ara aracını konuşmanın bağlamına göre daha iyi kelimelerle çağır (örneğin "Peki donanım için?" sorusunda "donanım stajı süresi" diye ara).
+SADECE dökümanlardaki bilgilere dayanarak cevap ver. Uydurma bilgi verme. Hiç döküman görmeden asla "bulamadım" deme.
 
 Cevap dökümanlarda yoksa:
 1. "Bu konuda dökümanlarda net bir bilgi bulamadım. Staj komisyonuna mail hazırlayayım mı?" diye sor.
@@ -150,6 +155,15 @@ def agent_cevap(gecmis, koleksiyon):
     ]
     mail = None
 
+    # Hız için: soruyla ilgili parçaları baştan bulup ilk çağrıya ekle.
+    # Böylece çoğu soru tek Gemini çağrısında cevaplanır. Çok kısa mesajlarda
+    # ("Evet", "Ahmet Yılmaz, 123...") arama anlamsız olduğu için atlanır.
+    son_mesaj = gecmis[-1]["icerik"] if gecmis else ""
+    if len(son_mesaj.split()) >= ON_ARAMA_MIN_KELIME:
+        parcalar = _araci_calistir("dokumanlarda_ara", {"sorgu": son_mesaj}, koleksiyon)["parcalar"]
+        on_arama = "[OTOMATİK DÖKÜMAN ARAMASI]\n" + "\n\n---\n\n".join(parcalar)
+        icerikler[-1].parts.append(types.Part(text=on_arama))
+
     try:
         config = types.GenerateContentConfig(
             system_instruction=SISTEM_MESAJI,
@@ -162,7 +176,11 @@ def agent_cevap(gecmis, koleksiyon):
             cagrilar = yanit.function_calls or []
 
             if not cagrilar:
-                return (yanit.text or "").strip(), mail
+                cevap = (yanit.text or "").strip()
+                if mail:
+                    # Link butonda gösteriliyor; model kurala uymayıp metne yazdıysa temizle
+                    cevap = re.sub(r"<a [^>]*>.*?</a>|https?://\S+|mailto:\S+", "", cevap).strip()
+                return cevap, mail
 
             icerikler.append(yanit.candidates[0].content)
             cevap_parcalari = []
