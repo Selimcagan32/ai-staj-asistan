@@ -20,7 +20,8 @@ Sistem, kullanıcının sorusuna cevap üretirken **sadece okulun resmi döküma
 - **Streamlit** – Web arayüzü
 - **ChromaDB** – Vector database
 - **Sentence Transformers** (multilingual embedding) – Türkçe metinler için anlamsal arama
-- **Google Gemini API** – Doğal dilde cevap üretimi (LLM)
+- **Google Gemini API** – Doğal dilde cevap üretimi ve function calling ile agent döngüsü (LLM)
+- **MCP (Model Context Protocol)** – Mail aracını ayrı bir server olarak sunma
 - **pdfplumber / python-docx** – PDF ve Word dökümanlarından metin çıkarma
 
 ## ⚙️ Nasıl Çalışıyor?
