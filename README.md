@@ -1,110 +1,134 @@
 <p align="center">
-  <img src="gorseller/okul_logo.png" alt="Okul Logo" width="120"/>
+  <img src="gorseller/okul_logo.png" alt="SDÜ Mühendislik ve Doğa Bilimleri Fakültesi" width="110"/>
 </p>
 
-# AI Staj Asistanı
+<h1 align="center">AI Staj Asistanı</h1>
 
-Üniversite öğrencilerinin staj süreciyle ilgili sorularını, okulun resmi staj dökümanlarına dayanarak yanıtlayan, **RAG (Retrieval-Augmented Generation)** tabanlı bir yapay zeka **agent**'ı. Cevap dökümanlarda yoksa, öğrenci için staj komisyonuna hazır bir mail taslağı oluşturabilir (**MCP** aracı ile).
+<p align="center">
+  SDÜ Bilgisayar Mühendisliği öğrencilerinin staj sorularını resmi bölüm belgelerine dayanarak yanıtlayan,<br/>
+  RAG tabanlı ve araç kullanan bir yapay zeka agent'ı.
+</p>
 
-🔗 **Canlı Demo:** [ai-staj-asistan.streamlit.app](https://ai-staj-asistan.streamlit.app/)
+<p align="center">
+  <a href="https://ai-staj-asistan.streamlit.app/"><strong>Canlı Demo</strong></a>
+</p>
 
-## 📌 Proje Hakkında
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white" alt="Python"/>
+  <img src="https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white" alt="Streamlit"/>
+  <img src="https://img.shields.io/badge/Google%20Gemini-8E75B2?logo=googlegemini&logoColor=white" alt="Google Gemini"/>
+  <img src="https://img.shields.io/badge/ChromaDB-FF6446" alt="ChromaDB"/>
+  <img src="https://img.shields.io/badge/MCP-000000" alt="MCP"/>
+</p>
 
-Staj sürecine dair güncel bilgiler (başvuru adımları, staj süresi, gerekli belgeler, İSG sertifikası vb.) genellikle dağınık PDF ve Word dökümanlarında yer alıyor. Bu proje, öğrencilerin bu bilgilere doğal bir sohbet arayüzü üzerinden, saniyeler içinde ve doğru kaynaktan erişebilmesini sağlıyor.
+---
 
-Sistem, kullanıcının sorusuna cevap üretirken **sadece okulun resmi dökümanlarındaki bilgilere dayanır**, böylece yanlış veya uydurma bilgi verme riski minimize edilir.
+## Genel Bakış
 
-## 🛠️ Kullanılan Teknolojiler
+Staj süreciyle ilgili bilgiler (başvuru adımları, süreler, gerekli belgeler, teslim kuralları) bölümün farklı yıllarda yayımladığı PDF ve Word belgelerine dağılmış durumdadır. Bu proje, öğrencinin bu bilgilere sohbet arayüzü üzerinden, saniyeler içinde ve doğru kaynaktan ulaşmasını sağlar.
 
-- **Python** – Ana geliştirme dili
-- **Streamlit** – Web arayüzü
-- **ChromaDB** – Vector database
-- **Sentence Transformers** (multilingual embedding) – Türkçe metinler için anlamsal arama
-- **Google Gemini API** – Doğal dilde cevap üretimi ve function calling ile agent döngüsü (LLM)
-- **MCP (Model Context Protocol)** – Mail aracını ayrı bir server olarak sunma
-- **pdfplumber / python-docx** – PDF ve Word dökümanlarından metin çıkarma
+Asistan yalnızca bölümün resmi belgelerinden derlenen bilgi bankasına dayanarak cevap verir. Sorunun cevabı belgelerde yoksa bilgi uydurmaz; bunun yerine öğrenciye ilgili staj sorumlusuna hazır bir e-posta taslağı oluşturmayı önerir.
 
-## ⚙️ Nasıl Çalışıyor?
+## Mimari
 
-1. **Döküman İşleme** – Okulun staj dökümanları (PDF/Word) okunup metne çevrilir
-2. **Parçalama (Chunking)** – Metinler, bağlamı koruyacak şekilde küçük parçalara bölünür
-3. **Embedding & Vector Database** – Her parça, anlamsal aramaya uygun hale getirilip ChromaDB'ye kaydedilir
-4. **Agent** – Gemini, soruya göre hangi aracı kullanacağına kendisi karar verir:
-   - `dokumanlarda_ara` → ChromaDB'de en alakalı döküman parçalarını bulur
-   - `komisyona_mail_hazirla` → MCP server'daki araç; komisyona hazır mail linki üretir
-5. **Generation** – Araç sonuçlarına dayanarak doğal bir cevap üretilir
-6. **Arayüz** – Tüm süreç, Streamlit ile oluşturulan sohbet arayüzünde kullanıcıya sunulur
+<p align="center">
+  <img src="gorseller/mimari_sema_sade.png" alt="AI Staj Asistanı mimari şeması" width="620"/>
+</p>
 
-```
-Kullanıcı Sorusu → Agent (Gemini)
-                     ├─ dokumanlarda_ara (ChromaDB) → Cevap
-                     └─ Cevap yoksa → "Mail hazırlayayım mı?" → Ad, soyad, öğrenci no
-                                       → komisyona_mail_hazirla (MCP) → "Gmail'de aç" / "Mail uygulamasında aç"
-```
+Dosya ve fonksiyon düzeyindeki ayrıntılar için [detaylı mimari şemasına](gorseller/mimari_sema_detayli.png) bakabilirsiniz.
 
-### 📧 Komisyona Mail Özelliği
+### Bir sorunun yolculuğu
 
-- Hiçbir hesaba giriş yapılmaz, mail **otomatik gönderilmez**. Sadece hazır doldurulmuş bir link üretilir; öğrenci maili kontrol edip kendisi gönderir.
-- Alıcı adresi kodda sabittir, agent değiştiremez.
-- Cihaz otomatik algılanır: bilgisayarda **Gmail'de aç**, telefonda **Mail uygulamasında aç** butonu gösterilir.
+1. **Arayüz:** Öğrenci sorusunu Streamlit arayüzüne yazar. Sohbet geçmişi oturum boyunca korunur.
+2. **Ön arama:** Mesaj, ChromaDB üzerinde anlamsal olarak aranır ve en ilgili belge parçaları bulunur. Bu adım sayesinde soruların çoğu tek bir model çağrısıyla cevaplanır.
+3. **Agent:** Gemini; sistem kurallarını, sohbet geçmişini ve bulunan parçaları birlikte değerlendirir. Parçalar yetersizse `dokumanlarda_ara` aracını konuşmanın bağlamına göre daha iyi bir sorguyla yeniden çağırır.
+4. **Cevap:** Bilgi belgelerde varsa öğrenciye yalnızca bu bilgilere dayanan bir cevap gösterilir.
+5. **E-posta önerisi:** Bilgi belgelerde yoksa asistan e-posta hazırlamayı önerir. Öğrenci onaylarsa ad, soyad ve öğrenci numarası istenir.
+6. **MCP aracı:** Gemini, ayrı bir MCP sunucusunda çalışan `komisyona_mail_hazirla` aracını çağırır. Alıcı, konunun türüne göre seçilir.
+7. **Gönderim:** Arayüz cihazı algılar ve tek bir buton gösterir. E-postayı öğrenci kontrol eder ve kendisi gönderir.
 
-## ✨ Özellikler
+## Öne Çıkan Özellikler
 
-- 🔍 Anlamsal arama (kelime eşleşmesi değil, anlam bazlı sonuç bulma)
-- 🌐 Türkçe dil desteği için multilingual embedding modeli
-- 🤖 Araç kullanan agent yapısı (Gemini function calling)
-- 📧 Cevap bulunamazsa komisyona tek tıkla mail taslağı (MCP)
-- 🧠 Sohbet geçmişini hatırlama
-- 🛡️ Hata durumlarında kullanıcı dostu geri bildirim
-- 💬 Gerçek zamanlı, akıcı sohbet arayüzü
-- 🏫 Kuruma özel, tanıdık bir görünüm (okul logosu ile)
+**Belgeye dayalı cevaplar.** Bilgi bankası, resmi belgelerdeki tekrarlar ve çelişkiler temizlenerek konulara göre altı dosyada toplanmıştır. Her soru-cevap ayrı bir parça olarak indekslenir. Böylece arama sonuçları birbirini tekrar etmez ve bir cevap iki parçaya bölünmez.
 
-## 🚀 Yerel Kurulum
+**Araç kullanan agent.** Gemini function calling ile çalışan agent, ne zaman arama yapacağına ve ne zaman e-posta aracını kullanacağına kendisi karar verir. Takip sorularında ("Peki donanım stajı için?") aramayı sohbetin bağlamına göre yeniden kurar.
 
-```bash
-# Repoyu klonla
-git clone https://github.com/Selimcagan32/ai-staj-asistan.git
-cd ai-staj-asistan
+**Güvenli e-posta akışı (MCP).**
+- Hiçbir e-posta hesabına giriş yapılmaz ve e-posta otomatik gönderilmez. Araç yalnızca hazır doldurulmuş bir bağlantı üretir.
+- Alıcı adresleri kodda sabittir. Agent yalnızca konu türünü seçebilir (`basvuru` veya `teslim`), adres yazamaz.
+  - Başvuru ve genel sorular: Arş.Gör. Muhammet Çağrı Gencer
+  - Staj teslimi: Dr.Öğr.Üyesi İbrahim Arda Çankaya
+- Cihaz otomatik algılanır: bilgisayarda "Gmail'de aç", telefonda "Mail uygulamasında aç" butonu gösterilir.
 
-# Sanal ortam oluştur ve aktive et
-python -m venv venv
-venv\Scripts\activate   # Windows
-# source venv/bin/activate   # Mac/Linux
+**Dayanıklılık.** Model geçici olarak yoğun olduğunda (HTTP 503) istek otomatik olarak yeniden denenir. Hatalar sunucu loglarına yazılır, öğrenciye ise anlaşılır bir mesaj gösterilir.
 
-# Gerekli kütüphaneleri kur
-pip install -r requirements.txt
+## Teknolojiler
 
-# .env dosyası oluştur ve API key'ini ekle
-echo GEMINI_API_KEY=senin_api_keyin > .env
+| Katman | Teknoloji |
+|---|---|
+| Arayüz | Streamlit |
+| Dil modeli ve agent | Google Gemini (function calling) |
+| Araç protokolü | MCP (Model Context Protocol), stdio üzerinden |
+| Vektör veritabanı | ChromaDB |
+| Embedding | sentence-transformers, `paraphrase-multilingual-mpnet-base-v2` |
+| Belge okuma | pdfplumber, python-docx |
+| Barındırma | Streamlit Community Cloud, GitHub Actions ile uyku önleme |
 
-# Uygulamayı çalıştır
-streamlit run app.py
-```
-
-## 📂 Proje Yapısı
+## Proje Yapısı
 
 ```
 ai-staj-asistan/
-├── app.py                  # Streamlit arayüzü
-├── agent.py                 # Agent döngüsü (Gemini function calling + araçlar)
-├── mail_mcp_server.py       # MCP server: komisyona mail linki hazırlama aracı
-├── chatbot.py               # Eski basit RAG sürümü (yedek)
-├── document_loader.py       # PDF/Word/txt döküman okuma
-├── text_splitter.py         # Metin parçalama (her soru-cevap ayrı parça)
-├── vector_db.py              # ChromaDB entegrasyonu
-├── dokumanlar/                # Bilgi bankası: konulara göre soru-cevap dosyaları (tekrarsız)
-├── kaynaklar/                 # Orijinal resmi belgeler (arşiv, veritabanına yüklenmez)
-├── requirements.txt
-└── README.md
+├── app.py                 Streamlit arayüzü ve cihaza göre e-posta butonu
+├── agent.py               Agent döngüsü: ön arama, Gemini, araç çağrıları
+├── mail_mcp_server.py     MCP sunucusu: e-posta bağlantısı üreten araç
+├── vector_db.py           ChromaDB bağlantısı ve anlamsal arama
+├── text_splitter.py       Bilgi bankasını soru-cevap parçalarına böler
+├── document_loader.py     PDF, Word ve metin dosyalarını okur
+├── chatbot.py             İlk sürümdeki basit RAG akışı (referans için)
+├── dokumanlar/            Bilgi bankası: konulara göre 6 soru-cevap dosyası
+├── kaynaklar/             Orijinal resmi belgeler (arşiv, indekslenmez)
+├── chroma_db/             Hazır vektör veritabanı
+├── gorseller/             Logo ve mimari şemalar
+└── .github/workflows/     Uygulamayı uyanık tutan zamanlanmış görev
 ```
 
-## 🎯 Gelecek Geliştirmeler
+## Kurulum
 
-- [ ] Kullanıcı geri bildirimi (👍/👎) ile cevap kalitesini takip etme
-- [ ] Sık sorulan soruların analitiği
-- [ ] Çoklu döküman kaynağı desteği (farklı bölümler için)
+Gereksinim: Python 3.11 veya üzeri ve bir [Google Gemini API anahtarı](https://aistudio.google.com/apikey).
 
-## 👤 Geliştirici
+```bash
+git clone https://github.com/Selimcagan32/ai-staj-asistan.git
+cd ai-staj-asistan
 
-**Selim Çağan**
-[GitHub](https://github.com/Selimcagan32)
+python -m venv venv
+venv\Scripts\activate            # Windows
+# source venv/bin/activate       # macOS / Linux
+
+pip install -r requirements.txt
+```
+
+Proje kök dizininde bir `.env` dosyası oluşturun:
+
+```
+GEMINI_API_KEY=api_anahtariniz
+```
+
+Uygulamayı başlatın:
+
+```bash
+streamlit run app.py
+```
+
+### Bilgi bankasını güncelleme
+
+`dokumanlar/` klasöründeki dosyalar `# Konu` ve `## Soru` başlıklarıyla yazılır. Her `## Soru` başlığı ve altındaki cevap ayrı bir parça olarak indekslenir. Dosyaları düzenledikten sonra `chroma_db/` klasörünü silip uygulamayı yeniden başlatmanız yeterlidir. Veritabanı boş olduğunda uygulama onu otomatik olarak yeniden oluşturur.
+
+## Yol Haritası
+
+- Kullanıcı geri bildirimiyle cevap kalitesinin takibi
+- Sık sorulan soruların analizi
+- Farklı bölümler için çoklu bilgi bankası desteği
+
+## Geliştirici
+
+**Selim Çağan** · [GitHub](https://github.com/Selimcagan32)
